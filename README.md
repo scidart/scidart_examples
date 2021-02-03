@@ -128,6 +128,7 @@ void main() {
     print(arrayToComplexArray(a));
     print(arrayPadStart(a, 2)); // add zeros at start of array
     print(arraySin(a)); // compute sin for all elements of array
+    print(arrayReverse(a)); // array a reversed
     
     var c = Array([1.12121212, 2.12121212, 3.12121212]);
     print(arrayTruncateEachElement(c, 4,
@@ -142,6 +143,7 @@ void main() {
     print(arrayComplexConjugate(aComplex));
     print(arrayComplexSum(aComplex, aComplex));
     print(arrayComplexPadStart(aComplex, 2));
+    print(arrayComplexReverse(aComplex));
 }
 ```
 
@@ -194,6 +196,31 @@ void main() {
     print(matrixNormOne(mA));
     print(matrixNormTwo(mA));
 }
+```
+
+### Number helpers
+```Dart
+print(bitReverse(1, 3)); // rotate 000001 3 times and get 00100
+print(highestOneBit(130)); // highest one bit. 0b10000010 => 1H: 2^8 = 128
+print(intToBool(130)); // int to bool
+print(boolToInt(false)); // bool to int
+print(isEven(0)); // even
+print(isOdd(1); // odd
+print(isEvenDouble(1.1141, 3)); // check if double is even after truncation
+print(isOddDouble(1.4474, 3)); // check if double is odd after truncation
+
+var c1 = Complex(real: 1.1111, imaginary: 1);
+var c2 = Complex(real: 1, imaginary: 1);
+
+print(c1 + c2); // complex sum
+print(c1 - c2); // complex sub
+print(c1 * c2); // complex mul
+print(c1 / c2); // complex div
+print(complexAbs(c1)); // complex absolute
+print(complexConjugate(c1)); // complex conjugate
+print(complexCos(c1)); // complex cos
+print(complexDivideScalar(c1, 2)); // complex div to scalar
+print(complexTruncate(c1, 2)); // complex truncate
 ```
 
 ### Complex operations
@@ -404,6 +431,12 @@ void main() {
     // compute the circular convolution for the complex signals
     print(convolutionCircularComplex(
         arrayToComplexArray(x), arrayToComplexArray(y)));
+
+    // compute cross-relation for two singnals
+    print(correlate(x, y))
+
+    // compute cross-relation for two complex singnals
+    correlateComplex(arrayToComplexArray(x), arrayToComplexArray(y));
     
     //-------- FIR filter -----------//
     // generate the test signal for filter
