@@ -108,7 +108,7 @@ import 'package:scidart/numdart.dart';
 
 void main() {
     var a = Array([1.0, 2.0, 3.0]);
-    var b = Array([1.0, 2.0, 3.0]);
+    var b = Array([1.12121212, 2.12121212, 3.12121212]);
     var aComplex = ArrayComplex([
       Complex(real: 2.0, imaginary: 2.0),
       Complex(real: 2.0, imaginary: 2.0),
@@ -119,31 +119,48 @@ void main() {
     print(a - b);
     print(a * b);
     print(a / b);
+    
+    print(arrayAddToScalar(a, 2));
+    print(arrayArgMax(a));
     print(arrayConcat(a, b)); // array concatenation
+    print(arrayCos(a));
+    print(arrayCumSum(a));
+    print(arrayDiff(a));
+    print(arrayDivisionToScalar(a, 2));
+    print(arrayLog10(a));
+    print(arrayLog(a));
     print(arrayMax(a));
     print(arrayMin(a));
-    print(arrayDivisionToScalar(a, 2));
-    print(a.getRangeArray(0, 2));
-    print(arraySum(a));
-    print(arrayToComplexArray(a));
+    print(arrayMultiplyToScalar(a, 2));
     print(arrayPadStart(a, 2)); // add zeros at start of array
-    print(arraySin(a)); // compute sin for all elements of array
+    print(arrayPow(a, 2));
+    print(arrayReshapeToMatrix(a, 2));
     print(arrayReverse(a)); // array a reversed
+    print(arraySin(a)); // compute sin for all elements of array
+    print(arraySinc(a)); // compute sinc function for all elements of array
+    print(arraySqrt(a));
+    print(arraySubToScalar(a, 2));
+    print(arraySum(a));
+    print(arrayToColumnMatrix(a));
+    print(arrayToComplexArray(a));
+    print(arrayTruncateEachElement(b, 4, returnNewArray: true)); // truncate all values
+    print(arrayTruncateLast(a));
     
-    var c = Array([1.12121212, 2.12121212, 3.12121212]);
-    print(arrayTruncateEachElement(c, 4,
-        returnNewArray: true)); // truncate all values
+    print(a.getRangeArray(0, 2));
     
     print(a == c);
-    print(arrayPow(a, 2));
-    print(arrayReshapeToMatrix(Array([1.0, 2.0, 3.0, 4.0]), 2));
     
     // Complex array operations
     print(arrayComplexAbs(aComplex));
     print(arrayComplexConjugate(aComplex));
-    print(arrayComplexSum(aComplex, aComplex));
+    print(arrayComplexCos(aComplex));
+    print(arrayComplexDivisionToScalar(aComplex, 2));
+    print(arrayComplexMultiplyToScalar(aComplex, 2));
     print(arrayComplexPadStart(aComplex, 2));
     print(arrayComplexReverse(aComplex));
+    print(arrayComplexSum(aComplex, aComplex));
+    print(arrayComplexTruncateEachElement(aComplex, 4));
+    print(arrayComplexTruncateLast(aComplex));
 }
 ```
 
@@ -178,13 +195,18 @@ void main() {
     print(matrixDot(mA, mC)); // Matrix product
     print(matrixQR(mA).Q()); // Matrix Q of QR decomposition
     print(matrixSolve(mB, mC)); // solve a linear system
+
+    print(array2dAddToScalar(mA, 2, returnNewArray: true));
+    print(array2dDivisionToScalar(mA, 2, returnNewArray: true));
+    print(array2dMultiplyToScalar(mA, 2, returnNewArray: true));
+    print(array2dSubToScalar(mA, 2, returnNewArray: true));
     
     var mD = Array2d([
       Array([1.121212121212]),
       Array([2.121212121212]),
       Array([3.121212121212])
     ]);
-    array2dTruncateEachElement(mD, 4);
+    print(array2dTruncateEachElement(mA, 4));
     print(mD);
     
     print(mA + mB);
@@ -200,27 +222,31 @@ void main() {
 
 ### Number helpers
 ```Dart
-print(bitReverse(1, 3)); // rotate 000001 3 times and get 00100
-print(highestOneBit(130)); // highest one bit. 0b10000010 => 1H: 2^8 = 128
-print(intToBool(130)); // int to bool
-print(boolToInt(false)); // bool to int
-print(isEven(0)); // even
-print(isOdd(1); // odd
-print(isEvenDouble(1.1141, 3)); // check if double is even after truncation
-print(isOddDouble(1.4474, 3)); // check if double is odd after truncation
+import 'package:scidart/numdart.dart';
 
-var c1 = Complex(real: 1.1111, imaginary: 1);
-var c2 = Complex(real: 1, imaginary: 1);
-
-print(c1 + c2); // complex sum
-print(c1 - c2); // complex sub
-print(c1 * c2); // complex mul
-print(c1 / c2); // complex div
-print(complexAbs(c1)); // complex absolute
-print(complexConjugate(c1)); // complex conjugate
-print(complexCos(c1)); // complex cos
-print(complexDivideScalar(c1, 2)); // complex div to scalar
-print(complexTruncate(c1, 2)); // complex truncate
+void main() {
+    print(bitReverse(1, 3)); // rotate 000001 3 times and get 00100
+    print(highestOneBit(130)); // highest one bit. 0b10000010 => 1H: 2^8 = 128
+    print(intToBool(130)); // int to bool
+    print(boolToInt(false)); // bool to int
+    print(isEven(0)); // even
+    print(isOdd(1)); // odd
+    print(isEvenDouble(1.1141, 3)); // check if double is even after truncation
+    print(isOddDouble(1.4474, 3)); // check if double is odd after truncation
+    
+    var c1 = Complex(real: 1.1111, imaginary: 1);
+    var c2 = Complex(real: 1, imaginary: 1);
+    
+    print(c1 + c2); // complex sum
+    print(c1 - c2); // complex sub
+    print(c1 * c2); // complex mul
+    print(c1 / c2); // complex div
+    print(complexAbs(c1)); // complex absolute
+    print(complexConjugate(c1)); // complex conjugate
+    print(complexCos(c1)); // complex cos
+    print(complexDivideScalar(c1, 2)); // complex div to scalar
+    print(complexTruncate(c1, 2)); // complex truncate
+}
 ```
 
 ### Complex operations
@@ -433,7 +459,7 @@ void main() {
         arrayToComplexArray(x), arrayToComplexArray(y)));
 
     // compute cross-relation for two singnals
-    print(correlate(x, y))
+    print(correlate(x, y));
 
     // compute cross-relation for two complex singnals
     correlateComplex(arrayToComplexArray(x), arrayToComplexArray(y));
