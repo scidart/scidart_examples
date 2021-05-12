@@ -198,7 +198,9 @@ void main() {
 
     print(array2dAddToScalar(mA, 2, returnNewArray: true));
     print(array2dDivisionToScalar(mA, 2, returnNewArray: true));
+    print(array2dInverseOfEachElement(mA, returnNewArray: true));
     print(array2dMultiplyToScalar(mA, 2, returnNewArray: true));
+    print(array2dPow(mA, 2, returnNewArray: true));
     print(array2dSubToScalar(mA, 2, returnNewArray: true));
     
     var mD = Array2d([
