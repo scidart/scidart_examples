@@ -219,6 +219,14 @@ void main() {
     
     print(matrixNormOne(mA));
     print(matrixNormTwo(mA));
+
+    // indexing only columns
+    var onlyOneColumn = mA.getColumn(1);
+    print(onlyOneColumn);
+
+    // subArray2d (submatrix)
+    var subMatrix = mA.subArray2d(1, 2, 1, 2);
+    print(subMatrix);
 }
 ```
 
